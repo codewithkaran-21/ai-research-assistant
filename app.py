@@ -123,7 +123,7 @@ def initialize_graph():
 
     # Setup LLM
     model = ChatGoogleGenerativeAI(
-        model="gemini-flash-lite-latest", 
+        model="gemini-1.5-flash", 
         api_key=os.getenv("GEMINI_API_KEY")
     )
     model = model.bind_tools(tools)
@@ -387,23 +387,25 @@ def process_message(user_input: str):
         input_data = {"messages": graph_messages}
         
         # Stream the response
-        with st.spinner("🔬 Researching... This may take a moment."):
+        with st.spinner("🔬 Researching..."):
             graph = initialize_graph()
-            stream = graph.stream(input_data, config, stream_mode="values")
-            
+
             assistant_response = ""
-            for chunk in stream:
-                last_message = chunk["messages"][-1]
-                
-                if isinstance(last_message, dict):
-                    content = last_message.get("content", "")
-                    role = last_message.get("role", "assistant")
-                    
-                    if role == "assistant" and content:
-                        assistant_response = content
-                
-                elif hasattr(last_message, 'content'):
-                    assistant_response = last_message.content
+            message_box = st.empty()  # live updates
+
+            for chunk in graph.stream(input_data, config, stream_mode="messages"):
+                if "messages" not in chunk:
+                    continue
+
+                last = chunk["messages"][-1]
+                content = last.get("content", "")
+
+                if content:
+                    assistant_response = content
+                    message_box.markdown(
+                        f'<div class="assistant-message"><strong>🤖 Assistant:</strong><br>{assistant_response}</div>',
+                        unsafe_allow_html=True
+                    )
         
         # Add assistant response to session state
         if assistant_response:
