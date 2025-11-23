@@ -25,7 +25,7 @@ def render_latex_pdf(latex_content: str) -> str:
         output_dir = Path("output").absolute()
         output_dir.mkdir(exist_ok=True)
         # Step3: Setup filenames
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
         tex_filename = f"paper_{timestamp}.tex"
         pdf_filename = f"paper_{timestamp}.pdf"
         # Step4: Export as tex & pdf
