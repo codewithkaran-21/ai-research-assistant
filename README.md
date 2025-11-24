@@ -1,84 +1,115 @@
-AI Research Assistant
+# 🔬 AI Research Assistant
 
-A tool to streamline research paper exploration using AI and arXiv analysis
+An AI-powered toolkit that helps researchers search, analyze, summarize,
+and generate insights from research papers---especially arXiv papers. It
+automates the tedious parts of literature review so you can focus on
+actual research.
 
-Overview
+## 🚀 Features
 
-The AI Research Assistant is a Python-based utility designed to help researchers interactively explore, summarise, and manage academic papers (especially from Cornell University’s arXiv) by combining PDF reading, metadata extraction and AI-powered summarisation. It aims to reduce the time spent digging through large numbers of research articles, allowing you to focus on insights and next-steps.
+-   🔍 **Search & fetch arXiv papers** using simple queries
+-   📄 **Download & read PDFs** automatically
+-   🧠 **AI-powered summarization**, key-point extraction & section-wise
+    analysis
+-   📝 **Generate reports or slide-ready content**
+-   🌐 Optional **web interface** (`app.py`) for interactive use
+-   ⚙️ Modular code structure for extending your own research workflows
 
-Features
+## 📦 Project Structure
 
-Fetch metadata and download PDFs from arXiv via the arxiv_tool.py module.
+    ai-research-assistant/
+    ├── ai_researcher.py        # Main workflow
+    ├── ai_researcher2.py       # Alternate workflow
+    ├── arxiv_tool.py           # arXiv search & download tool
+    ├── read_pdf.py             # PDF text extraction
+    ├── write_pdf.py            # Generates PDF summaries/reports
+    ├── app.py                  # Web interface
+    ├── requirements.txt        # Dependencies
+    ├── pyproject.toml          # Build config
+    ├── uv.lock                 # Lock file
+    └── .env                    # Environment variables (ignored by Git)
 
-Read and parse PDF content (using read_pdf.py) to extract key sections.
+## 🛠️ Getting Started
 
-Use AI to generate summaries, extract bullet-points, or create slide-ready content.
+### 1. Clone the repository
 
-Generate slide decks or reports via write_pdf.py.
+``` bash
+git clone https://github.com/codewithkaran-21/ai-research-assistant.git
+cd ai-research-assistant
+```
 
-Web interface via app.py for interactive exploration (optional).
+### 2. Create a virtual environment (recommended)
 
-Modular codebase for extending to other sources or adding custom workflows.
-
-Getting Started
-Prerequisites
-
-Python 3.8+
-
-Internet connection for arXiv access and AI calls (if used).
-
-An AI model/API key if you’re using a hosted AI-service (adjust code accordingly).
-
-Installation
-
-1. Clone the repository:
-
-git clone https://github.com/codewithkaran-21/ai-research-assistant.git  
-cd ai-research-assistant  
-
-2. Create a virtual environment (recommended)
+``` bash
 python -m venv venv
 venv\Scripts\activate   # Windows
 # or
 source venv/bin/activate  # macOS/Linux
+```
 
-3. Install dependencies
+### 3. Install dependencies
 
+``` bash
 pip install -r requirements.txt
+```
 
-4. Configure environment variables
+### 4. Configure environment variables
 
 If your workflow requires API keys or custom paths:
 
-cp .env.example .env   # if available
+    cp .env.example .env   # if available
 
-Fill the .env with relevant values.
-▶️ Usage
-🔎 Search for papers on arXiv
+Fill the `.env` with relevant values.
 
+## ▶️ Usage
+
+### 🔎 Search for papers on arXiv
+
+``` bash
 python arxiv_tool.py --query "large language models"
+```
 
-📚 Read & analyze a local PDF
+### 📚 Read & analyze a local PDF
 
+``` bash
 python read_pdf.py --file path/to/paper.pdf
+```
 
-🧠 Generate a PDF report or slides
+### 🧠 Generate a PDF report or slides
 
+``` bash
 python write_pdf.py --input analysis.json --output summary.pdf
+```
 
-🌐 Launch the web app
+### 🌐 Launch the web app
 
+``` bash
 python app.py
+```
 
-Open the browser at:
-http://localhost:5000
-📘 Example Use Cases
+Open the browser at **http://localhost:5000**
 
-    Summarize 10 latest papers on "GNNs" for a quick literature review
+## 📘 Example Use Cases
 
-    Convert a research paper into a slide deck
+-   Summarize 10 latest papers on "GNNs" for a quick literature review
+-   Convert a research paper into a slide deck
+-   Extract abstract + methodology + results instantly from any PDF
+-   Maintain a personal research directory with summaries
 
-    Extract abstract + methodology + results instantly from any PDF
+## 🤝 Contributing
 
-    Maintain a personal research directory with summaries
+Contributions are welcome!
 
+1.  Fork the repo
+2.  Create a feature branch
+3.  Commit your changes
+4.  Push & open a Pull Request
+
+## 📄 License
+
+MIT License
+
+## 🙌 Acknowledgements
+
+-   Built by **Karan Singh (codewithkaran-21)**
+-   Thanks to **arXiv API** for open access
